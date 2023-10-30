@@ -21,14 +21,14 @@ def training(env, num_episodes):
     print(f"Recompensa média: {total_reward / num_episodes}")
 
 
-def demo_agent(env, policy, num_episodes=1):
+def demo_agent(env, num_episodes=1):
     for episode in range(num_episodes):
         observation, _ = env.reset()
         done = False
         print("\nEpisode:", episode + 1)
         while not done:
             env.render()
-            action = policy[observation]
+            action = random_agent(env, observation)
             observation, _, done, _, _ = env.step(action)
         env.render()
 
@@ -40,7 +40,7 @@ def main():
     training(env, num_episodes)
 
     visual_env = gym.make("FrozenLake-v1", render_mode='human')
-    demo_agent(visual_env, random_agent, 3)
+    demo_agent(visual_env, 3)
 
 if __name__ == '__main__':
     main()
