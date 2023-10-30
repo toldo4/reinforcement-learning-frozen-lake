@@ -64,7 +64,7 @@ def demo_agent(env, Q, num_episodes=1):
 
 def main():
     env = gym.make("FrozenLake-v1")
-    num_episodes = 50000
+    num_episodes = 10000
 
     Q = q_learning(env, num_episodes)
     avg_reward = evaluate_policy(env, Q, num_episodes)
