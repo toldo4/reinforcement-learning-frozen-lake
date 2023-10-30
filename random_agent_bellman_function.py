@@ -97,7 +97,7 @@ def demo_agent(env, policy, num_episodes=1):
 
 def main():
     env = gym.make("FrozenLake-v1")
-    num_episodes = 1000
+    num_episodes = 10000
 
     avg_reward_random, optimal_policy, avg_reward_optimal = training(env, num_episodes)
 
