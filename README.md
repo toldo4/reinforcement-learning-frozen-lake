@@ -1,5 +1,3 @@
-![FrozenLake Demo Start](./demo/demo_start.png)
-
 # Reinforcement Learning with FrozenLake
 
 This project aims to explore the basic concepts of Reinforcement Learning using the `FrozenLake` environment from the OpenAI Gym library.
@@ -14,17 +12,38 @@ This project aims to explore the basic concepts of Reinforcement Learning using 
 
 ## GIF Comparison
 
-See each agent in action (all trained for 10,000 episodes):
+<p align="center">
+    See each agent in action (all trained for 10,000 episodes):
+</p>
 
-| Random Agent | Random with Bellman |
-|:------------:|:-------------------:|
-| ![Random Agent GIF](./demo/random_agent.gif) | ![Random Bellman GIF](./demo/random_bellman.gif) |
+<p align="center">
+  <table align="center">
+    <tr>
+      <td align="center">
+        <b>Random Agent</b><br>
+        <img src="./demo/random_agent.gif" alt="Random Agent GIF"><br>
+      </td>
+      <td align="center">
+        <b>Random with Bellman</b><br>
+        <img src="./demo/random_bellman.gif" alt="Random Bellman GIF"><br>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <b>Q-Learning Agent</b><br>
+        <img src="./demo/qlearning.gif" alt="Q-Learning GIF"><br>
+      </td>
+      <td align="center">
+        <b>SARSA Agent</b><br>
+        <img src="./demo/sarsa.gif" alt="SARSA GIF"><br>
+      </td>
+    </tr>
+  </table>
+</p>
 
-| Q-Learning Agent | SARSA Agent |
-|:----------------:|:-----------:|
-| ![Q-Learning GIF](./demo/qlearning.gif) | ![SARSA GIF](./demo/sarsa.gif) |
-
-#### __* the best performance after 10000 episodes was from Q-Learning Agent__
+<p align="center">
+    <b>*The best performance after 10,000 episodes was from Q-Learning Agent<b>
+</p>
 
 ---
 
