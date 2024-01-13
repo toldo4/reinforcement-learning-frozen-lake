@@ -65,7 +65,7 @@ def demo_agent(env, Q, num_episodes=1):
             observation, reward, done, _, _ = env.step(action)
             print(f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}")
             if done: 
-                print(f"Reward is {reward}")
+                print(f"Final reward for episode {episode=1} is: {reward}")
         env.render()
 
 
