@@ -3,6 +3,8 @@ import gym
 from tqdm import tqdm
 
 
+direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
+
 def epsilon_greedy_policy(Q, state, epsilon):
     if np.random.uniform(0, 1) < epsilon:
         return np.random.choice(len(Q[state]))
@@ -54,11 +56,16 @@ def demo_agent(env, Q, num_episodes=1):
     for episode in range(num_episodes):
         observation, _ = env.reset()
         done = False
-        print("\nEpisode:", episode + 1)
+        print("\nDemo: Episode:", episode + 1)
+        counter = 0
         while not done:
+            counter += 1
             env.render()
             action = policy[observation]
-            observation, _, done, _, _ = env.step(action)
+            observation, reward, done, _, _ = env.step(action)
+            print(f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}")
+            if done: 
+                print(f"Reward is {reward}")
         env.render()
 
 
