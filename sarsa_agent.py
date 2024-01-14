@@ -1,5 +1,6 @@
 import numpy as np
 import gym
+#from gym.wrappers.monitoring.video_recorder import VideoRecorder
 from tqdm import tqdm
 import wandb
 
@@ -11,7 +12,7 @@ direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 # Initialize wandb
 wandb.init(
     project="FrozenLake",
-    name = "Sarsa" + wandb.util.generate_id(),
+    name = "Sarsa " + wandb.util.generate_id(),
     tags=["sarsa", ],
     config={
         "algorithm": "Sarsa",
@@ -69,6 +70,7 @@ def evaluate_policy(env, Q, num_episodes):
 
 
 def demo_agent(env, Q, num_episodes=1):
+
     policy = np.argmax(Q, axis=1)
     for episode in range(num_episodes):
         observation, _ = env.reset()
@@ -85,7 +87,7 @@ def demo_agent(env, Q, num_episodes=1):
 
 
 def main():
-    env = gym.make("FrozenLake-v1")
+    env = gym.make("FrozenLake-v1", render_mode='ansi')
     num_episodes = 10000
 
     Q_sarsa = sarsa(env, num_episodes)
