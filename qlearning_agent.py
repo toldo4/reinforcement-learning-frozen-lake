@@ -3,6 +3,8 @@ import gym
 from tqdm import tqdm
 import wandb
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 
@@ -10,6 +12,8 @@ direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 wandb.init(
 
     project="Frozen Lake",
+
+    name = "Q Learning",
 
     config={
         "algorithm": "Q Learning",
@@ -23,6 +27,7 @@ def epsilon_greedy_policy(Q, state, epsilon):
         return np.random.choice(len(Q[state]))
     else:
         return np.argmax(Q[state])
+
 
 
 def q_learning(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):

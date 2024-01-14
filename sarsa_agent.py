@@ -1,6 +1,24 @@
 import numpy as np
 import gym
 from tqdm import tqdm
+import wandb
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
+
+# Initialize wandb
+wandb.init(
+    project="Frozen Lake",
+    name = "Sarsa",
+    tags=["sarsa", "frozen"],
+    config={
+        "algorithm": "Sarsa",
+        "timesteps": 100000,
+        "env": "FrozenLakeEnv"
+    }
+)
 
 
 def epsilon_greedy_policy(Q, state, epsilon):
@@ -30,6 +48,7 @@ def sarsa(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
         if episode % 1000 == 0:
             avg_reward = evaluate_policy(env, Q, 100)
             pbar.set_description(f"Average reward: {avg_reward:.2f}")
+            wandb.log({"episode": episode, "avg_reward": avg_reward})
     pbar.close()
     return Q
 
@@ -54,11 +73,14 @@ def demo_agent(env, Q, num_episodes=1):
     for episode in range(num_episodes):
         observation, _ = env.reset()
         done = False
-        print("\nEpisode:", episode + 1)
+        print("\nDemo: Episode:", episode + 1)
+        counter = 0
         while not done:
+            counter += 1
             env.render()
             action = policy[observation]
-            observation, _, done, _, _ = env.step(action)
+            observation, reward, done, _, _ = env.step(action)
+            print(f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}")
         env.render()
 
 
