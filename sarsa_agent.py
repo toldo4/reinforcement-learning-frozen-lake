@@ -10,9 +10,9 @@ direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 
 # Initialize wandb
 wandb.init(
-    project="Frozen Lake",
-    name = "Sarsa",
-    tags=["sarsa", "frozen"],
+    project="FrozenLake",
+    name = "Sarsa" + wandb.util.generate_id(),
+    tags=["sarsa", ],
     config={
         "algorithm": "Sarsa",
         "timesteps": 100000,

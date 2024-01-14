@@ -11,10 +11,9 @@ direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 # Initialize wandb
 wandb.init(
 
-    project="Frozen Lake",
-
-    name = "Q Learning",
-
+    project="FrozenLake",
+    name = "Q Learning" + wandb.util.generate_id(),
+    tags=["q-learning", ],
     config={
         "algorithm": "Q Learning",
         "timesteps": 100000,
