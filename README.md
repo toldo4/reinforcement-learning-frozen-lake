@@ -42,7 +42,7 @@ This project aims to explore the basic concepts of Reinforcement Learning using 
 </p>
 
 <p align="center">
-    <b>*The best performance after 10,000 episodes was from Q-Learning Agent<b>
+    <b>*The best performance after 10,000 episodes was from Q-Learning Agent</b>
 </p>
 
 ---
