@@ -1,6 +1,6 @@
 # Reinforcement Learning with FrozenLake
 
-This project aims to explore the basic concepts of Reinforcement Learning using the `FrozenLake` environment from the OpenAI Gym library.
+This project aims to explore the basic concepts of Reinforcement Learning using the `FrozenLake` environment from the OpenAI Gym library. View training history at https://wandb.ai/liu-chang/FrozenLake.
 
 ## Concepts covered:
 
