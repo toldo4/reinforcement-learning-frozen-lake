@@ -1,9 +1,22 @@
 import numpy as np
 import gym
 from tqdm import tqdm
+import wandb
 
 
 direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
+
+# Initialize wandb
+wandb.init(
+
+    project="Frozen Lake",
+
+    config={
+        "algorithm": "Q Learning",
+        "timesteps": 100000,
+        "env": "FrozenLakeEnv"
+    }
+)
 
 def epsilon_greedy_policy(Q, state, epsilon):
     if np.random.uniform(0, 1) < epsilon:
@@ -32,6 +45,7 @@ def q_learning(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
         if episode % 1000 == 0:
             avg_reward = evaluate_policy(env, Q, 100)
             pbar.set_description(f"\nAverage reward after {episode} episodes: {avg_reward:.2f}")
+            wandb.log({"episode": episode, "avg_reward": avg_reward})
     pbar.close()
     return Q
 
@@ -65,7 +79,7 @@ def demo_agent(env, Q, num_episodes=1):
             observation, reward, done, _, _ = env.step(action)
             print(f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}")
             if done: 
-                print(f"Final reward for episode {episode=1} is: {reward}")
+                print(f"Final reward for episode {episode+1} is: {reward}")
         env.render()
 
 
@@ -83,3 +97,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
