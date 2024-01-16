@@ -4,15 +4,22 @@ import gym
 from tqdm import tqdm
 import wandb
 
+from PIL import Image, ImageDraw, ImageFont
+
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 direction_map = {0: "left", 1: "down", 2: "right", 3: "up"}
 
+import os
+
+hostname = os.uname()[1]
+
+
 # Initialize wandb
 wandb.init(
     project="FrozenLake",
-    name = "Sarsa " + wandb.util.generate_id(),
+    name = hostname + ":" + wandb.util.generate_id(),
     tags=["sarsa", ],
     config={
         "algorithm": "Sarsa",
@@ -20,6 +27,7 @@ wandb.init(
         "env": "FrozenLakeEnv"
     }
 )
+
 
 
 def epsilon_greedy_policy(Q, state, epsilon):
@@ -77,13 +85,23 @@ def demo_agent(env, Q, num_episodes=1):
         done = False
         print("\nDemo: Episode:", episode + 1)
         counter = 0
+        ascii_string = ""
         while not done:
             counter += 1
             env.render()
             action = policy[observation]
             observation, reward, done, _, _ = env.step(action)
-            print(f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}")
+            ascii_string += f"Action {episode+1}-{counter}: {direction_map[action]}: reward: {reward}\n"
         env.render()
+        print(ascii_string)
+
+        img = Image.new("RGB", (500, 100), color="black")
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype("/usr/share/fonts/truetype/ubuntu/Ubuntu-R.ttf", 16)  # Adjust font path and size
+        draw.text((10, 10), ascii_string, fill="white", font=font)
+
+        wandb.log({"ascii_image": wandb.Image(img)})
+
 
 
 def main():
