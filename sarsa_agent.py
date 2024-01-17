@@ -1,5 +1,5 @@
 import numpy as np
-import gym
+import gymnasium as gym
 #from gym.wrappers.monitoring.video_recorder import VideoRecorder
 from tqdm import tqdm
 import wandb
