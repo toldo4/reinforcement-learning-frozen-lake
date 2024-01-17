@@ -95,11 +95,9 @@ def demo_agent(env, Q, num_episodes=1):
         env.render()
         print(ascii_string)
 
-        img = Image.new("RGB", (500, 100), color="black")
+        img = Image.new("RGB", (500, 1000), color="beige")
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("/usr/share/fonts/truetype/ubuntu/Ubuntu-R.ttf", 16)  # Adjust font path and size
-        draw.text((10, 10), ascii_string, fill="white", font=font)
-
+        draw.text((10, 10), ascii_string, fill="brown")
         wandb.log({"ascii_image": wandb.Image(img)})
 
 
