@@ -64,6 +64,27 @@ After activating the virtual environment, install the dependencies through the `
 pip install -r requirements.txt
 ```
 
+### Setup on Codespaces
+
+Alternatively, the following commands can be used to set up the environment on Codespaces
+
+```
+(games38) @drchangliu ➜ /workspaces/reinforcement-learning-frozen-lake (main) $ history
+    1  which conda
+    2  which python
+    3  conda create -n games38 python=3.8
+    4  ls
+    6  conda init
+    7  source ~/.bashrc
+    8  conda activate games38
+   13  conda install pillow  -c conda-forge
+   14  conda install wandb
+   15  conda install gymnasium
+   17  conda install tqdm
+   19  conda install pygame
+   20  python sarsa_agent.py 
+```
+
 ### Execution:
 
 There are four main scripts to run:
