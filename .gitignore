@@ -1,3 +1,5 @@
 wandb
 .DS_Store
 thumbs.db
+frozen_lake
+env
