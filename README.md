@@ -54,8 +54,8 @@ This project aims to explore the basic concepts of Reinforcement Learning using 
 It's recommended to create a virtual environment to install the necessary dependencies and maintain the project's consistency:
 
 ```bash
-python -m venv env
-source env/bin/activate  # On Windows use: env\Scripts\activate
+python -m venv frozen_lake
+source frozen_lake/bin/activate  # On Windows use: frozen_lake\Scripts\activate
 ```
 
 After activating the virtual environment, install the dependencies through the `requirements.txt` file:
