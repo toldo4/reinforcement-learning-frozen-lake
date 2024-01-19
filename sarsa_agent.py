@@ -19,7 +19,7 @@ hostname = os.uname()[1]
 # Initialize wandb
 wandb.init(
     project="FrozenLake",
-    name = hostname + ":" + wandb.util.generate_id(),
+    name = hostname + ": " + wandb.util.generate_id(),
     tags=["sarsa", ],
     config={
         "algorithm": "Sarsa",
