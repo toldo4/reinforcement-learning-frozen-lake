@@ -89,14 +89,14 @@ def demo_agent(env, Q, num_episodes=1):
 
 def main():
     env = gym.make("FrozenLake-v1")
-    num_episodes = 10000
+    num_episodes = 50000
 
     Q = q_learning(env, num_episodes)
     avg_reward = evaluate_policy(env, Q, num_episodes)
     print(f"Average reward after Q-learning: {avg_reward}")
 
     visual_env = gym.make('FrozenLake-v1', render_mode='human')
-    demo_agent(visual_env, Q, 3)
+    demo_agent(visual_env, Q, 30)
 
 
 if __name__ == '__main__':

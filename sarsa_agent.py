@@ -55,26 +55,33 @@ def sarsa(env, num_episodes, alpha=0.1, gamma=0.99, epsilon=0.1):
             episode_reward += reward
         pbar.update(1)
         if episode % 1000 == 0:
-            avg_reward = evaluate_policy(env, Q, 100)
+            avg_reward, avg_actions = evaluate_policy(env, Q, 100)
             pbar.set_description(f"Average reward: {avg_reward:.2f}")
             wandb.log({"episode": episode, "avg_reward": avg_reward})
+            wandb.log({"episode": episode, "avg_actions": avg_actions})
     pbar.close()
     return Q
 
 
 def evaluate_policy(env, Q, num_episodes):
     total_reward = 0
+    total_actions = 0
+
     policy = np.argmax(Q, axis=1)
     for episode in range(num_episodes):
         observation, _ = env.reset()
         done = False
         episode_reward = 0
+        episode_actions = 0
         while not done:
             action = policy[observation]
             observation, reward, done, _, _ = env.step(action)
             episode_reward += reward
+            episode_actions += 1
         total_reward += episode_reward
-    return total_reward / num_episodes
+        total_actions += episode_actions
+        
+    return total_reward / num_episodes, total_actions / num_episodes 
 
 
 def demo_agent(env, Q, num_episodes=1):
@@ -104,14 +111,15 @@ def demo_agent(env, Q, num_episodes=1):
 
 def main():
     env = gym.make("FrozenLake-v1", render_mode='ansi')
-    num_episodes = 10000
+    num_episodes = 100000
 
     Q_sarsa = sarsa(env, num_episodes)
-    avg_reward = evaluate_policy(env, Q_sarsa, num_episodes)
+    avg_reward, avg_actions = evaluate_policy(env, Q_sarsa, num_episodes)
     print(f"Average reward after SARSA: {avg_reward}")
+    print(f"Average reward after SARSA: {avg_actions}")
 
     visual_env = gym.make('FrozenLake-v1', render_mode='human')
-    demo_agent(visual_env, Q_sarsa, 3)
+    demo_agent(visual_env, Q_sarsa, 10)
 
 
 if __name__ == '__main__':
